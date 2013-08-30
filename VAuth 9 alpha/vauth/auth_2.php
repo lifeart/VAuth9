@@ -5,22 +5,10 @@
 	$_ref = @$_REQUEST['ref'];
 	$_code = @$_REQUEST['code'];
 	$_network = @$_REQUEST['network'];
-	$_SesNetwork = @$_SESSION['v_network'];
+	$_ses_network = @$_SESSION['v_network'];
 	
-	if (!empty($_code)) {
+	$vauth = new Vauth($_network,$_ses_network);
 	
-		if (empty($_network)) {
-			if (!empty($_SesNetwork)
-				$_network = $_SesNetwork;
-			else newError('No network name',1);
-		}
-		
-		$vauth = new Vauth($_network);
-		
+	$vauth->auth();
+	$vauth->controller();
 	
-	} else {
-	
-		if (empty($_SesNetwork))
-			Vauth:authFrom($_network);
-	
-	}

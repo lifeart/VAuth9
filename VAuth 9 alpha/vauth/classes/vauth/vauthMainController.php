@@ -3,7 +3,9 @@
 	class VAUTH {
 	
 		var $className = 'VAUTH';
-		var $model = new vauthUserModel();
+		var $user = new vauthUserModel();
+		var $cms = new vauthCMSModel();
+		// var $vauth = false;
 		var $network = false;
 		var $uid = false;
 		var $social = false;
@@ -17,16 +19,21 @@
 		}
 		
 		function auth() {
-			$this->social = new vauthSocial($this->network);
-			if ($this->checkDleUserAuth()==true) {
-				$this->connect();
-			} else {
-				$result =  $this->model->check($network,$id);
-				if (!$result) {
-					$this->register();
-				} else $this->login();
-			}
+			$this->cms->auth();
+			$this->network->auth();
 		}
+		function status() {
+			if ($this->network->auth() == true) {
+				$data = $this->cms->checkUidStatus();
+			} else  {
+				
+			}
+			if ($this->cms->auth() == true) {
+			
+			} else {
+			
+			}
+		}		
 		function register() {
 			$this->social->getInfoById($this->uid);
 			$dleRegResult = $this->dle_register($this->social->info);
