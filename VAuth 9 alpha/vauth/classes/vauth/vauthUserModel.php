@@ -37,28 +37,46 @@
 	class vauthUserModel {
 	
 		var $className = 'vauthUserModel';
-		var $db_vauth_users_networks = USERPREFIX."_vauth_user_networks";
-		var $db_vauth_users = USERPREFIX."_vauth_users";
-		var $db_dle_users = USERPREFIX."_users";
+		var $cms->db->vauth_users_networks = USERPREFIX."_vauth_user_networks";
+		var $cms->db->vauth_users = USERPREFIX."_vauth_users";
+		var $user_table = USERPREFIX."_users";
+		
+		function __construct($cms=false) {
+			if (!$cms) $this->errors->logError('Невозможно создать модель пользователя, так как не указана CMS');
+			$this->cms = new vauthCMS($cms);
+		}
 		
 		private function getUserById($id=false) {	
 			$functionName = 'getUserById';
 			if (is_numeric($id) && $id > 0) {
 				$resp = array();
 				$resp->id= $id;
-				$dUserinfo = $this->load_table($this->db_dle_users, "*", "user_id = '$id'");
+				
+				$superq = "
+					
+					SELECT {$this->cms->db->user_table}.*,{$this->cms->db->vauth_users}.*,{$this->cms->db->vauth_users_networks}.*
+					FROM {$this->cms->db->user_table} 
+					LEFT JOIN {$this->cms->db->vauth_users} 
+					ON {$this->cms->db->user_table}.user_id={$this->cms->db->vauth_users}.stuff_id
+					LEFT JOIN {$this->cms->db->vauth_users_networks}
+					ON {$this->cms->db->user_table}.user_id={$this->cms->db->vauth_users_networks}.user_id
+					WHERE {$this->cms->db->user_table}.user_id = '$id'
+				
+				";
+				
+				$dUserinfo = $this->load_table($this->cms->db->user_table, "*", "user_id = '$id'");
 				if (!$dUserinfo) {
 					$eParams = array();
 					$eParams[] = $id;	
 					newError($className,$functionName,'dUserInfo',$eParams);
 				} else $resp->dle=$dUserinfo;
-				$vUserinfo = $this->load_table($this->db_vauth_users,"*", "user_id = '$id'");
+				$vUserinfo = $this->load_table($this->cms->db->vauth_users,"*", "user_id = '$id'");
 				if (!$vUserinfo) {
 					$eParams = array();
 					$eParams[] = $id;	
 					newError($className,$functionName,'vUserInfo',$eParams);
 				} else $resp->vauth=$vUserinfo;
-				$vUserNetworks = $this->load_table($this->db_vauth_users_networks,"*", "user_id = '$id'",true);
+				$vUserNetworks = $this->load_table($this->cms->db->vauth_users_networks,"*", "user_id = '$id'",true);
 				if (!$vUserNetworks) {
 					$eParams = array();
 					$eParams[] = $id;	
@@ -77,7 +95,7 @@
 			if (is_numeric($id) && $id>0) {
 				$uResult = array();
 				foreach ($array as $key=>$value) {
-					$uResult[$key] = $this->db->query( "UPDATE " . $this->db_dle_users . " SET {$key}='{$value}' WHERE user_id='{$id}'" );
+					$uResult[$key] = $this->db->query( "UPDATE " . $this->cms->db->user_table . " SET {$key}='{$value}' WHERE user_id='{$id}'" );
 				}
 				return $uResult;
 			} else {
@@ -90,7 +108,7 @@
 			if (is_numeric($id) && $id>0) {
 				$uResult = array();	
 				foreach ($array as $key=>$value) {
-					$uResult[$key] = $this->db->query( "UPDATE " . $this->db_vauth_users . " SET {$key}='{$value}' WHERE user_id='{$id}'" );
+					$uResult[$key] = $this->db->query( "UPDATE " . $this->cms->db->vauth_users . " SET {$key}='{$value}' WHERE user_id='{$id}'" );
 				}
 				return $uResult;
 			} else return false;
@@ -101,13 +119,13 @@
 				if (isset( $array->id )) {
 					foreach ($array as $key=>$value) {
 						try {
-							$uResult[$key] = $this->db->query( "UPDATE " . $this->db_vauth_users_networks . " SET {$key}='{$value}' WHERE id='{$array->id}'" );
+							$uResult[$key] = $this->db->query( "UPDATE " . $this->cms->db->vauth_users_networks . " SET {$key}='{$value}' WHERE id='{$array->id}'" );
 						} catch (Exception $e) {
 							$uResult[$key] = $e;
 						}
 					}
 				} else {
-					$this->db->query( "insert into " . $this->db_vauth_users_networks . " (user_id) VALUES ('$id')" );
+					$this->db->query( "insert into " . $this->cms->db->vauth_users_networks . " (user_id) VALUES ('$id')" );
 					$array->id = $this->db->insert_id();
 					return $this->setNetwork ($id,$array);
 				}
@@ -116,7 +134,7 @@
 		}
 		private function removeVauthUser($id) {
 			if (is_numeric($id) && $id > 0) {
-				$this->db->query("DELETE FROM `".$this->db_vauth_users."` where user_id = '{$id}'");
+				$this->db->query("DELETE FROM `".$this->cms->db->vauth_users."` where user_id = '{$id}'");
 				return true;
 			} else return false;
 		};
@@ -124,9 +142,9 @@
 			$res = array();
 			if (isset($data->id)) {
 				if (is_numeric($data->id)) {
-					$res->id=$this->db->query("DELETE FROM `".$this->db_vauth_users_networks."` where id = '{$data->id}'");
+					$res->id=$this->db->query("DELETE FROM `".$this->cms->db->vauth_users_networks."` where id = '{$data->id}'");
 				} elseif ($data->id = '*' && isset($data->user_id)) {
-					$res->id=$this->db->query("DELETE FROM `".$this->db_vauth_users_networks."` where user_id = '{$data->user_id}'");
+					$res->id=$this->db->query("DELETE FROM `".$this->cms->db->vauth_users_networks."` where user_id = '{$data->user_id}'");
 				} else return false;
 				return $res->id;
 			} elseif (isset($data->ids) && is_array($data->ids)) {
@@ -138,7 +156,7 @@
 		};
 		private function getUserByNetworkNameAndId($network=false,$id=false) {
 			if ($network!=false && $id!=false) {
-				$vUser = $this->load_table($this->db_vauth_users_networks,"*", "network = '$network' and id='$id'");
+				$vUser = $this->load_table($this->cms->db->vauth_users_networks,"*", "network = '$network' and id='$id'");
 				if ($vUser) $user = $this->getUserById($vUser['user_id']);
 				else return false;
 				if ($user) return $user;
@@ -150,11 +168,11 @@
 			if (is_array($array))
 				$userlist = implode(",", $array);
 			else $userlist = $array;
-			$result = $this->load_table($this->db_vauth_users_networks, "user_id", "uid in ({$userlist}) and network = '{$network}'",true);
+			$result = $this->load_table($this->cms->db->vauth_users_networks, "user_id", "uid in ({$userlist}) and network = '{$network}'",true);
 			if ($result) {	
 				$friends = array();
 				foreach ($result as $value) {
-					$friend = load_table($this->db_dle_users, "user_id,name,foto,fullname", "user_id = '{$value['user_id']}'");
+					$friend = load_table($this->cms->db->user_table, "user_id,name,foto,fullname", "user_id = '{$value['user_id']}'");
 					if ($friend) $friends[] = $friend;
 				}
 				if (count($friends)) return $friends;

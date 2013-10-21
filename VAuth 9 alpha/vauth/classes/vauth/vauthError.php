@@ -3,11 +3,11 @@
 	class vauthError {
 	
 	
-		private _errors = array();
-		private _errorsHtml = '';
-		private _errorStringGlue = '<br/>';
+		private $_errors = array();
+		private $_errorsHtml = '';
+		private $_errorStringGlue = '<br/>';
 	
-		function createError() {
+		function createErrorText() {
 		
 			if (count($this->_errors)) {
 			

@@ -3,14 +3,19 @@
 	class VAUTH {
 	
 		var $className = 'VAUTH';
+		
+		// подключаем модель работы с пользователями
 		var $user = new vauthUserModel();
+		// подключаем модель работы с CMS
 		var $cms = new vauthCMSModel();
 		// var $vauth = false;
 		var $network = false;
+		
 		var $uid = false;
 		var $social = false;
 		
-		function __construct($network) {
+		// при создании модели нам нужно указать социальную сеть, с которой мы работаем
+		function __construct($network=false) {
 			$this->network = new vauthNetwork($network);
 		}
 		
@@ -19,20 +24,14 @@
 		}
 		
 		function auth() {
-			$this->cms->auth();
-			$this->network->auth();
+			$this->cms->auth($this->user);
+			$this->network->auth($this->user);
 		}
-		function status() {
-			if ($this->network->auth() == true) {
-				$data = $this->cms->checkUidStatus();
-			} else  {
-				
-			}
-			if ($this->cms->auth() == true) {
-			
-			} else {
-			
-			}
+		function authStatus() {
+			$flag_1 = $this->network->auth();
+			$flag_2 = $this->cms->auth();
+			if ($flag_1 && $flag_2) return true;
+			else return false;
 		}		
 		function register() {
 			$this->social->getInfoById($this->uid);
@@ -55,37 +54,25 @@
 				return $this->model->set($data);
 			} else return false;
 		}
+		
 		function get($data) {
-		
 			if (is_array($data)) {
-				
 				$result = array();
-			
 				foreach ($data as $value) {
-			
 					$result[] = $this->getUserById($value);
-				
 				}
-				
 				return $result;
-				
 			} else return $this->getUserById($data);
-		
 		}
-		function set($data) {
 		
+		function set($data) {
 			$functionName = 'set';
-
 			if (!isset($data->id)) {
-	
 				$eParams = array();
 				$eParams[] = $data;	
 				newError($className,$functionName,'noUserId',$eParams);	
-			
 			} else {
-			
 				$res = array();
-			
 				$id = $data->id;
 				if (isset($data->dle)) {
 					$res->dle = $this->setDle($id,$data->dle);
@@ -97,34 +84,24 @@
 					$res->network = $this->setNetwork($id,$data->network);
 				}
 				if (isset($data->networks)) {
-					
 					$nsUpdate = array();
-					
 					foreach ($data->networks as $key=>$value) {
 						$res->networks[] = $this->setNetwork($id,$value);
-					}
-					
+					}	
 				}
-
 				return $res;
-			
 			}
-		
-		}	
+		}
+		// контроллер удаления непровославных записей
 		function remove($data) {
 			
 			$res = array();
-			
 			if (isset($data->vauth)) {
 				$res->vauth = removeVauthUser($data->vauth->user_id);
 			}
-			
 			if (isset($data->network)) {
-				
 				$res->network = removeVauthUserNetwork($data->network);
-			
 			}
-			
 			return $res;
 		
 		}
