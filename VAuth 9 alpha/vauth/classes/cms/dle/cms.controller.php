@@ -6,13 +6,19 @@
 		var $name = 'DataLife Engine';
 		var $compability = '> 8.2';
 		var $version = '0.1';
-		var $user = new VatuhCMSUser();
+		var $user = false;
+		
+		function __cunstruct() {
+		
+			$this->user = new vatuhCmsUser();
+			$this->db = new vauthCmsDb();
+		
+		}
 	
 	}
 	
 	
-	class VatuhCMSUser {
-		
+	class vatuhCmsUser {
 		
 		function getByID($id=false) {}
 		function updateUserLogin($id,$login) {}
@@ -26,6 +32,10 @@
 		function login($data) {}
 		function register($data) {}
 		function check();
-		
+	
+	}
+	
+	class vauthCmsDb {
+	
 	
 	}
