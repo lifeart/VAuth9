@@ -1,5 +1,7 @@
 <?php
 	
+	include_once('api.class.php');
+	
 	class VauthCMS {
 	
 		var $description = 'DataLifeEngine CMS VAuth Class';
@@ -36,6 +38,7 @@
 	}
 	
 	class vauthCmsDb {
+	
 	
 	
 	}
