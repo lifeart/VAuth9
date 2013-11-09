@@ -7,9 +7,10 @@
 		// подключаем модель работы с пользователями
 		var $user = new vauthUserModel();
 		// подключаем модель работы с CMS
-		var $cms = new vauthCMSModel();
+		var $cms = new vauthCMSModel('dle');
 		// var $vauth = false;
 		var $network = false;
+		var $error = new vauthError();
 		
 		var $uid = false;
 		var $social = false;
@@ -17,10 +18,6 @@
 		// при создании модели нам нужно указать социальную сеть, с которой мы работаем
 		function __construct($network=false) {
 			$this->network = new vauthNetwork($network);
-		}
-		
-		function checkDleUserAuth() {
-			return true;
 		}
 		
 		function auth() {
@@ -35,8 +32,8 @@
 		}		
 		function register() {
 			$this->social->getInfoById($this->uid);
-			$dleRegResult = $this->dle_register($this->social->info);
-			$this->vauth_register($dleRegResult);
+			$cmsRegResult = $this->cms->register($this->social->info);
+			$this->vauth_register($cmsRegResult);
 			$this->connect($this->social);
 			$this->myInfo();
 			$this->auth();
@@ -94,7 +91,6 @@
 		}
 		// контроллер удаления непровославных записей
 		function remove($data) {
-			
 			$res = array();
 			if (isset($data->vauth)) {
 				$res->vauth = removeVauthUser($data->vauth->user_id);
@@ -103,7 +99,5 @@
 				$res->network = removeVauthUserNetwork($data->network);
 			}
 			return $res;
-		
 		}
-		
 	}

@@ -40,6 +40,7 @@
 		var $cms->db->vauth_users_networks = USERPREFIX."_vauth_user_networks";
 		var $cms->db->vauth_users = USERPREFIX."_vauth_users";
 		var $user_table = USERPREFIX."_users";
+		var $errors = new vauthError();
 		
 		function __construct($cms=false) {
 			if (!$cms) $this->errors->logError('Невозможно создать модель пользователя, так как не указана CMS');
@@ -89,9 +90,9 @@
 				newError($className,$functionName,'varValidation',$eParams);
 				return false;
 			}
-		}	
-		private function setDle ($id,$array) {
-			$functionName = 'setDle';
+		}
+		private function setCms ($id,$array) {
+			$functionName = 'setCms';
 			if (is_numeric($id) && $id>0) {
 				$uResult = array();
 				foreach ($array as $key=>$value) {
@@ -201,7 +202,7 @@
 				$res = array();
 				$id = $data->id;
 				if (isset($data->dle)) {
-					$res->dle = $this->setDle($id,$data->dle);
+					$res->dle = $this->setCms($id,$data->dle);
 				}
 				if (isset($data->vauth)) {
 					$res->vauth = $this->setVauth($id,$data->vauth);

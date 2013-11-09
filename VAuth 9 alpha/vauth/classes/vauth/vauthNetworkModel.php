@@ -45,10 +45,15 @@
 		// var $autentificated = false;
 
 		function __construct($network,$code=false) {
+			$this->_loadNetwork($network,$code=false);
+		}
+		
+		function _loadNetwork($network,$code=false) {
 			$network = trim(mb_strtolower($network));
 			if (!empty($network) && ctype_alpha($network) == true) {
-				if (file_exists($this->func_path . '/' . $this->network_file_prefix . $network . $this->network_file_postfix) {
-					require_once($this->func_path . '/' . $this->network_file_prefix . $network . $this->network_file_postfix);
+				$fname = $this->func_path . '/' . $this->network_file_prefix . $network . $this->network_file_postfix;
+				if (file_exists($fname) {
+					require_once($fname);
 					$this->network = new Network();
 					$this->network_name = $network;
 				} else newError('no network function file',1);
@@ -56,6 +61,7 @@
 			if ($code != false) {
 				$this->code = $code;
 			}
+			return true;
 		}
 		
 		function auth() {
