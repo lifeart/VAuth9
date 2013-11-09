@@ -51,7 +51,7 @@
 			global $userhash_salt;
 			global $userhash_pass;
 			
-			##	*	Ëîãèí ïîëüçîâàòåëÿ íà ñàéòå	
+			##	*	Ð›Ð¾Ð³Ð¸Ð½ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð½Ð° ÑÐ°Ð¹Ñ‚Ðµ	
 			$_IP = $db->safesql( $_SERVER['REMOTE_ADDR'] );
 			$dle_login_hash = "";
 			
@@ -110,7 +110,7 @@
 			$password = base64_decode( $password );
 			$password = $this->encode( $password );
 
-			if ( md5( $password ) != $userinfo['password'] ) die($this->conv_it('Ïàðîëè íå ñîâïàäàþò)'));
+			if ( md5( $password ) != $userinfo['password'] ) die($this->conv_it('ÐŸÐ°Ñ€Ð¾Ð»Ð¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚)'));
 		
 			set_cookie( "dle_user_id", $userinfo['user_id'], 365 ); 
 			set_cookie( "dle_password", $password, 365 );
@@ -225,7 +225,7 @@
 				}
 				
 				if	($reguser == -2) {
-					// Àâòîðèçàöèÿ ïîëüçîâàòåëÿ ïî e-mail ))
+					// ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð¿Ð¾ e-mail ))
 					if ($vauth_config['email_auth'] == 1) {
 						$userinfo = $dle_api->take_user_by_email($oauth['email']);
 						if (!empty($userinfo['userpassword_hash'])) $this->user_login($userinfo);
