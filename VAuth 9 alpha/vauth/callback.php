@@ -1,26 +1,18 @@
 <?php
 
-	session_start();
-
-	if ($_GET['error']) {
+	include_once("settings/script_settings.php");
 	
+	if (isset($_REQUEST['error'])) {
 		print_r($_GET);
 		die();
-		
 	}
 
-	if (!empty($_GET['code'])) {
-	
+	if (!empty($_REQUEST['code'])) {
 		if (!empty($_SESSION['auth_from'])) {
-	
 			$sicial_net = $_SESSION['auth_from'];
-			
 			if(empty($sicial_net)) die($vauth_text['no_auth_site']);
-
 			header('Location: ./auth.php?auth_site='.$sicial_net.'&code='.$_GET['code']);
-
 			die();
-		
 		}
 	}
 	

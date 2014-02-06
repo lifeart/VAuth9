@@ -5,7 +5,7 @@
 	if (!defined('DATALIFEENGINE')) 	define	(	'DATALIFEENGINE',	true	);
 	if (!defined('ROOT_DIR')) 			define	(	'ROOT_DIR',			substr(dirname (__FILE__),0,strpos( dirname ( __FILE__ ),"engine" )-1) );
 	if (!defined('ENGINE_DIR')) 		define	(	'ENGINE_DIR',		ROOT_DIR . '/engine'	);
-
+	
 	#настройки скрипта
 	
 		#расположение дополнительных файлов скрипта
