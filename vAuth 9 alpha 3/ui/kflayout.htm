@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="ui/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="ui/js/bootstrap.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  <style>
+  
+  body {
+    padding-top: 50px;
+    overflow: hidden;
+}
+#wrapper {
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: inline-block;
+}
+#main-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 50px 0 0px 0;
+}
+#main {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+#sidebar-wrapper {
+    height: 100%;
+    padding: 50px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+}
+#sidebar {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+#sidebar .list-group-item {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+}
+@media (max-width: 992px) {
+    body {
+        padding-top: 0px;
+    }
+}
+@media (min-width: 992px) {
+    #main-wrapper {
+        float:right;
+    }
+}
+@media (max-width: 992px) {
+    #main-wrapper {
+        padding-top: 0px;
+    }
+}
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        position: static;
+        height:auto;
+        max-height: 300px;
+  		border-right:0;
+	}
+}
+  </style>
+  
+    <div id="header" class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="icon-reorder"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+            Профиль
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#">Navbar Item 1</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navbar Item 2<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Navbar Item2 - Sub Item 1</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Navbar Item 3</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown">
+                <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Username<i class="icon-sort-down"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div id="wrapper">
+  <div id="sidebar-wrapper" class="col-md-2">
+            <div id="sidebar">
+                <ul class="nav list-group">
+                    <li>
+                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Салаты</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Горячие закуски</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Холодные закуски</a>
+                    </li>
+					<li>
+                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Горячие блюда</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main-wrapper" class="col-md-10 pull-right">
+            <div id="main">
+              <div class="page-header">
+                <h3>Admin</h3>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget magna et ante suscipit lacinia. Aenean porttitor velit id pretium blandit. Aenean ut sodales ante. Ut faucibus ornare venenatis. Duis sit amet arcu eros. Mauris volutpat vestibulum congue. Nam volutpat, urna eu varius dapibus, velit nisl bibendum lorem, sit amet dapibus sem dolor eu felis.
+Praesent sed dolor euismod, condimentum ante quis, molestie orci. Ut vel venenatis nunc, ut porta lacus. Donec ligula felis, tristique ut sollicitudin eget, commodo vel augue. Maecenas quis enim ac elit bibendum tristique. Suspendisse a vestibulum dui. Donec molestie enim vel ornare fermentum. Etiam suscipit, velit et dapibus dapibus, metus tellus convallis nulla, sit amet pharetra magna nunc id mauris. In eget nunc eleifend, aliquet urna sed, viverra ipsum. Quisque fringilla non eros vitae sollicitudin. Pellentesque non nisl est. Suspendisse potenti.</p>
+           
+		   <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+         Мой заказ. Общая сумма заказа: 256 руб.
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+	  
+		<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge" style="background-color:#d9534f;"><span class="glyphicon glyphicon-remove"></span></span>
+    <span class="badge"><span class="glyphicon glyphicon-plus"></span></span>
+    <span class="badge"><span class="glyphicon glyphicon-minus"></span></span>
+    <span class="badge">14</span>
+   Картофель фри 128 руб. x 2 = 256 руб.
+  </li>
+  
+  
+    <li class="list-group-item">
+    <span class="badge">14</span>
+   Безумный карлик в кляре 128 руб. x 5 = 456 руб.
+  </li>
+  
+   <li class="list-group-item">
+    <span class="badge">14</span>
+   Зелёный пингвин 128 руб. x 1 = 156 руб.
+  </li>
+  
+     <li class="list-group-item">
+    <span class="badge">14</span>
+   Пивас столичный 1л. 128 руб. x 1 = 156 руб.
+  </li>
+  
+</ul>
+	  <h3>Всего: 1245 руб.</h3>
+       </div>
+    </div>
+  </div>
+</div>
+		   
+			<div class="row">
+			<div class="col-md-6">
+			<div class="panel panel-default">
+                      <div class="panel-heading">
+					  <div class="row" style="margin-top: -10px;">
+					   <div class="col-sm-4">
+					  <h3>ГИГА-СЕТ</h3>
+					  </div>
+					  <div class="col-sm-4">
+					  <h3><span class="label label-warning">22.56 руб</span></h3>
+					  </div>
+					   <div class="col-sm-4">
+					  <h3>
+						  <span class="badge">14</span>
+						  <span class="label label-danger"><span class="glyphicon glyphicon-minus"></span></span> 
+						  <span class="label label-success"><span class="glyphicon glyphicon-plus"></span></span> 
+					  </h3>
+					  </div>
+					  </div>
+					  </div>
+                      <div class="panel-body">
+					                <div class="row">
+                <div class="col-sm-5">
+				<img src="//d.killfish.ru/gallery/menu/08316cb63fbcc99ab4b9010232e48a8c.min.jpg" alt="..." class="img-thumbnail img-responsive">
+        	      	
+                </div>
+                <div class="col-sm-7"><small>
+					Супер огромный набор разнообразных роллов и большой ассортимент суши: Филадельфия маки, Калифорния маки, Динамит маки, Аризона маки.
+					<br>По 2 суши: Саке нигири, Чукка нигири, Магуро нигири, Хотатегай нигири.
+					<br>По 2 острые суши: Спайси Саке, Спайси Ика, Спайси Хотатегай, Спайси Идзумитай. 
+					<br>По 2 запеченные:Яки Саке, Яки Ика, Яки Хотатегай, Яки Идзумитай
+		</small>
+				</div>
+              </div>
+                      </div>
+			</div>
+			</div>
+
+			
+		
+			<div class="col-md-6">
+			<div class="panel panel-default">
+                      <div class="panel-heading">
+					  <div class="row" style="margin-top: -10px;">
+					   <div class="col-sm-4">
+					  <h3>ГИГА-СЕТ</h3>
+					  </div>
+					  <div class="col-sm-4">
+					  <h3><span class="label label-warning">22.56 руб</span></h3>
+					  </div>
+					   <div class="col-sm-4">
+					  <h3>
+						  <span class="badge">14</span>
+						  <span class="label label-danger"><span class="glyphicon glyphicon-minus"></span></span> 
+						  <span class="label label-success"><span class="glyphicon glyphicon-plus"></span></span> 
+					  </h3>
+					  </div>
+					  </div>
+					  </div>
+                      <div class="panel-body">
+					                <div class="row">
+                <div class="col-sm-5">
+				<img src="//d.killfish.ru/gallery/menu/08316cb63fbcc99ab4b9010232e48a8c.min.jpg" alt="..." class="img-thumbnail img-responsive">
+        	      	
+                </div>
+                <div class="col-sm-7"><small>
+					Супер огромный набор разнообразных роллов и большой ассортимент суши: Филадельфия маки, Калифорния маки, Динамит маки, Аризона маки.
+					<br>По 2 суши: Саке нигири, Чукка нигири, Магуро нигири, Хотатегай нигири.
+					<br>По 2 острые суши: Спайси Саке, Спайси Ика, Спайси Хотатегай, Спайси Идзумитай. 
+					<br>По 2 запеченные:Яки Саке, Яки Ика, Яки Хотатегай, Яки Идзумитай
+		</small>
+				</div>
+              </div>
+                      </div>
+			</div>
+			</div>
+
+	
+	
+				<div class="col-md-6">
+			<div class="panel panel-default">
+                      <div class="panel-heading">
+					  <div class="row" style="margin-top: -10px;">
+					   <div class="col-sm-4">
+					  <h3>ГИГА-СЕТ</h3>
+					  </div>
+					  <div class="col-sm-4">
+					  <h3><span class="label label-warning">22.56 руб</span></h3>
+					  </div>
+					   <div class="col-sm-4">
+					  <h3>
+						  <span class="badge">14</span>
+						  <span class="label label-danger"><span class="glyphicon glyphicon-minus"></span></span> 
+						  <span class="label label-success"><span class="glyphicon glyphicon-plus"></span></span> 
+					  </h3>
+					  </div>
+					  </div>
+					  </div>
+                      <div class="panel-body">
+					                <div class="row">
+                <div class="col-sm-5">
+				<img src="//d.killfish.ru/gallery/menu/08316cb63fbcc99ab4b9010232e48a8c.min.jpg" alt="..." class="img-thumbnail img-responsive">
+        	      	
+                </div>
+                <div class="col-sm-7"><small>
+					Супер огромный набор разнообразных роллов и большой ассортимент суши: Филадельфия маки, Калифорния маки, Динамит маки, Аризона маки.
+					<br>По 2 суши: Саке нигири, Чукка нигири, Магуро нигири, Хотатегай нигири.
+					<br>По 2 острые суши: Спайси Саке, Спайси Ика, Спайси Хотатегай, Спайси Идзумитай. 
+					<br>По 2 запеченные:Яки Саке, Яки Ика, Яки Хотатегай, Яки Идзумитай
+		</small>
+				</div>
+              </div>
+                      </div>
+			</div>
+			</div>
+
+	
+	
+				<div class="col-md-6">
+			<div class="panel panel-default">
+                      <div class="panel-heading">
+					  <div class="row" style="margin-top: -3px;">
+					   <div class="col-sm-9">
+					  <h4>СПАЙСИ ХОТАТЕГАЙ НИГИРИ</h4>
+					  </div>
+					  <div class="col-sm-3">
+					  <h4><span class="label label-warning">22.56 руб</span></h4>
+					  </div>
+				
+					  </div>
+					  </div>
+                      <div class="panel-body">
+					                <div class="row">
+                <div class="col-sm-5">
+				<img src="//d.killfish.ru/gallery/menu/08316cb63fbcc99ab4b9010232e48a8c.min.jpg" alt="..." class="img-thumbnail img-responsive">
+        	      	
+                </div>
+                <div class="col-sm-7"><small>
+					Супер огромный набор разнообразных роллов и большой ассортимент суши: Филадельфия маки, Калифорния маки, Динамит маки, Аризона маки.
+					<br>По 2 суши: Саке нигири, Чукка нигири, Магуро нигири, Хотатегай нигири.
+					<br>По 2 острые суши: Спайси Саке, Спайси Ика, Спайси Хотатегай, Спайси Идзумитай. 
+					<br>По 2 запеченные:Яки Саке, Яки Ика, Яки Хотатегай, Яки Идзумитай
+		</small>
+				</div>
+              </div>
+			  <div class="row">
+			  	   <div class="col-sm-12">
+					  <h3>
+						  <span class="badge">14</span>
+						  <span class="label label-danger"><span class="glyphicon glyphicon-minus"></span></span> 
+						  <span class="label label-success">Добавить к заказу</span> 
+					  </h3>
+					  </div>
+			  </div>
+                      </div>
+			</div>
+			</div>
+
+	
+	
+				<div class="col-md-6">
+			<div class="panel panel-default">
+                      <div class="panel-heading">
+					  <div class="row" style="margin-top: -10px;">
+					   <div class="col-sm-4">
+					  <h3>МАГУРО НИГИРИ</h3>
+					  </div>
+					  <div class="col-sm-4">
+					  <h3><span class="label label-warning">22.56 руб</span></h3>
+					  </div>
+					   <div class="col-sm-4">
+					  <h3>
+						  <span class="badge">14</span>
+						  <span class="label label-danger"><span class="glyphicon glyphicon-minus"></span></span> 
+						  <span class="label label-success"><span class="glyphicon glyphicon-plus"></span></span> 
+					  </h3>
+					  </div>
+					  </div>
+					  </div>
+                      <div class="panel-body">
+					                <div class="row">
+                <div class="col-sm-5">
+				<img src="//d.killfish.ru/gallery/menu/08316cb63fbcc99ab4b9010232e48a8c.min.jpg" alt="..." class="img-thumbnail img-responsive">
+        	      	
+                </div>
+                <div class="col-sm-7"><small>
+					Супер огромный набор разнообразных роллов и большой ассортимент суши: Филадельфия маки, Калифорния маки, Динамит маки, Аризона маки.
+					<br>По 2 суши: Саке нигири, Чукка нигири, Магуро нигири, Хотатегай нигири.
+					<br>По 2 острые суши: Спайси Саке, Спайси Ика, Спайси Хотатегай, Спайси Идзумитай. 
+					<br>По 2 запеченные:Яки Саке, Яки Ика, Яки Хотатегай, Яки Идзумитай
+		</small>
+				</div>
+              </div>
+                      </div>
+			</div>
+			</div>
+
+	
+		
+ 
+            </div>
+		   </div>
+        </div>
+</div>
+  </body>
+</html>

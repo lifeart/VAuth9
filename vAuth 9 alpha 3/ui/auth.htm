@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h1>Авторизация на сайте</h1>
+  <p>Пожалуйста, выберите необходимую социальную сеть для авторизации</p>
+  <p><a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> vkontakte.ru</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> facebook.com</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> twitter.com</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> instagram.com</a></p>
+  <p><a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> forsquare.com</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> github.com</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> microsoftlive.com</a>
+  <a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-globe"></span> plus.google.com</a></p>
+  <div class="alert alert-danger">
+	   <p>Внимание! Демо страница работает в тестовом режиме.</p>
+	   <p>Авторизация на сайте через данные социальные сети не гарантируется</p>
+	   <p>Рабочая версия на данный момент - VAuth 8, эта страница посвящена VAuth 9</p>
+   </div>
+</div>
+<script>
+$(document).ready(function(){
+
+	var buttons = $('.btn-primary');
+	$.each(buttons,function(index,value) {
+		var text = $.trim($(value).text());
+		text = text.slice(0,text.indexOf('.'));
+		$(value).attr('href','/go/'+text);
+	});
+
+});
+</script>

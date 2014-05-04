@@ -1,0 +1,57 @@
+
+<div class="jumbotron" style="padding-top:80px;">
+	<div class="page-header">
+	  <h1><?php echo $profile['first_name'].' '.$profile['last_name']; ?> <small>привет)</small></h1>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<img src="<?php echo $profile['photo_200']; ?>" alt="..." class="img-thumbnail img-responsive">
+		</div>
+		<div class="col-md-9"><div class="well well-sm">
+			<div class="row">
+				<div class="col-md-3">Имя:</div>
+				<div class="col-md-9"><?php echo $profile['first_name']; ?></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">Фамилия:</div>
+				<div class="col-md-9"><?php echo $profile['last_name']; ?></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3">Дата рождения:</div>
+				<div class="col-md-9"><?php echo $profile['bdate']; ?></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">Страна:</div>
+				<div class="col-md-9"><?php echo $profile['country']['title']; ?></div>
+			</div>			
+			
+			<div class="row">
+				<div class="col-md-3">Город:</div>
+				<div class="col-md-9"><?php echo $profile['city']['title']; ?></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3">Университет:</div>
+				<div class="col-md-9"><?php echo $profile['university_name']; ?></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3">Девиз на день:</div>
+				<div class="col-md-9"><?php echo $profile['activity']; ?></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">Любимые TV шоу:</div>
+				<div class="col-md-9"><?php echo $profile['tv']; ?></div>
+			</div>				
+			
+			<div class="row">
+				<div class="col-md-3">Интересы:</div>
+				<div class="col-md-9"><?php echo $profile['interests']; ?></div>
+			</div>
+		</div>
+	</div></div>
+</div>

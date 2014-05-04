@@ -1,0 +1,80 @@
+<style>
+	.row {margin-bottom: 20px;}
+	.jumbotron {margin-top: 80px;}
+	.hidden {dispaly:none;}
+</style>
+<script>
+$(document).ready(function(){
+	$('.admin-nav-top li').click(function(){
+		$('.admin-nav-top li').removeClass('active');
+		$(this).addClass('active');
+		hideMenuItems();
+		return false;
+	});	
+	
+	function hideMenuItems() {
+		$('.menu-right-item').addClass('hidden');
+	}
+	
+	$('.admin-nav-left li').click(function(){
+		$('.admin-nav-left li').removeClass('active');
+		$(this).addClass('active');
+		return false;
+	});
+	
+	$('#settings-social').click(function(){
+		hideMenuItems();
+		$('#setting-social-content').removeClass('hidden');
+	});
+});
+
+</script>
+<div class="jumbotron">
+  <div class="container">
+  <div class="page-header">
+  <h1>Панель управления <small>vAuth 9</small></h1>
+</div>
+	<div class="row">
+		<div class="col-md-12">
+				<ul class="nav nav-pills admin-nav-top">
+				  <li class="active"><a href="#">Настройки</a></li>
+				  <li><a href="#">Статистика</a></li>
+				  <li><a href="#">Новости</a></li>
+				  <li><a href="#">Графики</a></li>
+				  <li><a href="#">Обновления</a></li>
+				  <li><a href="#">Помочь проекту</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-4">
+				<ul class="nav nav-pills nav-stacked admin-nav-left">
+				  <li class="active"><a href="#">Модуль</a></li>
+				  <li><a href="#" id="settings-social">Социальные сети</a></li>
+				  <li><a href="#">Движок</a></li>
+				</ul>
+		</div>
+        <div class="col-md-8">
+			<!-- Nav tabs -->
+			<div id="setting-social-content" class="menu-right-item">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#home" data-toggle="tab">Активные</a></li>
+  <li><a href="#profile" data-toggle="tab">Выключенные</a></li>
+  <li><a href="#messages" data-toggle="tab">Все</a></li>
+  <li><a href="#settings" data-toggle="tab">Добавить</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home">1</div>
+  <div class="tab-pane" id="profile">2</div>
+  <div class="tab-pane" id="messages">3</div>
+  <div class="tab-pane" id="settings">4</div>
+</div>
+
+		</div>
+		</div>
+      </div>
+	
+  </div>
+</div>
